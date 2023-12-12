@@ -15,10 +15,6 @@ git clone https://github.com/huggingface/chat-ui.git
 cd ./chat-ui
 git checkout e0c0b0e53fd3d9452c3adae82de39d15c9476a1b 
 ```
-Add dependency for chat-ui Dockerfile
-```shell
-RUN apt-get update && apt-get install -y libvips-dev
-```
 
 Run the configuration script to update svelte.config.js and crate a .env.local file
 ```shell
