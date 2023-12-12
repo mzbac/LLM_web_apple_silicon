@@ -29,38 +29,35 @@ echo "Modified svelte.config.js successfully."
 cat << EOF > "$ENV_FILE"
 MONGODB_URL=mongodb://host.docker.internal:27017/
 MODELS=\`[
-    {
-        "name": "ehartford/dolphin-2_2-yi-34b",
-        "datasetName": "ehartford/dolphin",
+  {
+        "name": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+        "datasetName": "Mixtral-8x7B",
         "description": "A good alternative to ChatGPT",
-        "websiteUrl": "https://open-assistant.io",
-        "userMessageToken": "<|im_start|>user\n",
-        "assistantMessageToken": "<|im_start|>assistant\n",
-        "userMessageEndToken": "<|im_end|>",
-        "assistantMessageEndToken": "<|im_end|>",
-        "preprompt": "<|im_start|>system\nBelow is an instruction that describes a task. Write a response that appropriately completes the request.<|im_end|>\n",
-        "promptExamples": [
-            {
-                "title": "Write an email from bullet list",
-                "prompt": "As a restaurant owner, write a professional email to the supplier to get these products every week: \n\n- Wine (x10)\n- Eggs (x24)\n- Bread (x12)"
-                }, {
-                "title": "Code a snake game",
-                "prompt": "Code a basic snake game in python, give explanations for each step."
-                }, {
-                "title": "Assist in a task",
-                "prompt": "How do I make a delicious lemon cheesecake?"
-            }
-        ],
+        "websiteUrl": "https://mistral.ai/news/mixtral-of-experts/",
+        "preprompt": "",
+        "chatPromptTemplate" : "<s>{{#each messages}}{{#ifUser}}[INST] {{#if @first}}{{#if @root.preprompt}}{{@root.preprompt}}\n{{/if}}{{/if}}{{content}} [/INST]{{/ifUser}}{{#ifAssistant}}{{content}}</s>{{/ifAssistant}}{{/each}}",
         "parameters": {
-            "temperature": 0.7,
-            "top_p": 0.95,
-            "repetition_penalty": 1.1,
-            "top_k": 50,
-            "truncate": 4048,
-            "max_new_tokens": 4048,
-            "stop": ["<|im_start|>user\n"]
+        "temperature": 0.3,
+        "top_p": 0.95,
+        "repetition_penalty": 1.3,
+        "top_k": 50,
+        "truncate": 12000,
+        "max_new_tokens": 4048,
+        "stop": ["</s>"]
         },
-        "endpoints": [
+        "promptExamples": [
+        {
+          "title": "Write an email from bullet list",
+          "prompt": "As a restaurant owner, write a professional email to the supplier to get these products every week: \n\n- Wine (x10)\n- Eggs (x24)\n- Bread (x12)"
+        }, {
+          "title": "Code a snake game",
+          "prompt": "Code a basic snake game in python, give explanations for each step."
+        }, {
+          "title": "Assist in a task",
+          "prompt": "How do I make a delicious lemon cheesecake?"
+        }
+      ],
+      "endpoints": [
         {
          "baseURL": "http://host.docker.internal:8080/v1",
          "type": "openai"
