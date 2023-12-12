@@ -12,6 +12,8 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx-selfsigned.key
 ## Clone chat ui
 ```shell
 git clone https://github.com/huggingface/chat-ui.git
+cd ./chat-ui
+git checkout e0c0b0e53fd3d9452c3adae82de39d15c9476a1b 
 ```
 Add dependency for chat-ui Dockerfile
 ```shell
