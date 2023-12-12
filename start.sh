@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the repository and model details
-REPO_URL="git@github.com:ggerganov/llama.cpp.git"
+REPO_URL="https://github.com/ggerganov/llama.cpp.git"
 REPO_DIR="llama.cpp"
 MODEL_URL="https://huggingface.co/TheBloke/Mixtral-8x7B-Instruct-v0.1-GGUF/resolve/main/mixtral-8x7b-instruct-v0.1.Q4_K_M.gguf"
 MODEL_FILE="mixtral-8x7b-instruct-v0.1.Q4_K_M.gguf"
